@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+int optimasl(vector<int> arr, vector<int> dep)
+{
+    int n = arr.size();
+    sort(arr.begin(), arr.end());
+    sort(dep.begin(), dep.end());
+    int i = 1;
+    int j = 0;
+    int plat = 1;
+    int max_platforms = 1;
+    while (i < n && j < n)
+    {
+        if (arr[i] <= dep[j])
+        {
+            plat++;
+            max_platforms = max(plat, max_platforms);
+            i++;
+        }
+        else if (arr[i] > dep[j])
+        {
+            plat--;
+            j++;
+        }
+    }
+    return max_platforms;
+}
+int32_t main()
+{
+    int n;
+    cin >> n;
+    vector<int> vec1(n);
+    for (auto &it : vec1)
+    {
+        cin >> it;
+    }
+    vector<int> vec2(n);
+    for (auto &it : vec2)
+    {
+        cin >> it;
+    }
+    cout << optimasl(vec1, vec2);
+    return 0;
+}
